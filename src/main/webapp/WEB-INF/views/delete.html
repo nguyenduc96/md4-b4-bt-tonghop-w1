@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DELETE</title>
+</head>
+<body>
+<form th:action="@{/delete}" th:object="${student}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <p th:text="${student.name}"></p>
+    <p th:text="${student.address}"></p>
+    <p th:text="${student.email}"></p>
+    <p>
+    <img width="60" height="60" th:src="@{'/image/' + ${student.image}}" alt="Avatar">
+</p>
+    <button>DELETE</button>
+</form>
+</body>
+</html>

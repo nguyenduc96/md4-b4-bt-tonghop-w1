@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>STUDENT MANAGEMENT</h2>
+<hr>
+<form th:action="@{/home}">
+    <div>
+        <input type="text" name="q" placeholder="Search...">
+        <button>Search</button>
+    </div>
+</form>
+<p th:text="${message}"></p>
+<button>
+    <a th:href="@{/create}">
+        Add new
+    </a>
+</button>
+<table id="students">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Avatar</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="student, studentStat : ${students}">
+        <td th:text="${studentStat.count}"></td>
+        <td th:text="${student.name}">
+<!--            <a th:href="@{{id}/view(id=${student.id})}" th:alt="View info">-->
+<!--            <span th:text="${student.name}"></span>-->
+<!--        </a>-->
+        </td>
+        <td th:text="${student.address}"></td>
+        <td th:text="${student.email}"></td>
+        <td>
+            <img width="60" height="60" th:src="@{'/image/' + ${student.image}}" alt="Avatar">
+        </td>
+        <td><a th:href="@{{id}/edit(id=${student.id})}">EDIT</a></td>
+        <td><a th:href="@{{id}/delete(id=${student.id})}">DELETE</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
